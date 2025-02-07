@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwpusosoas2dq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0dh5s"]
+
+[node name="NavigationNode" type="Area3D" groups=["MovementNodes"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_0dh5s")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5bt346no4bhj"]
+
+[ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/enemies/test_enemy.tscn" id="1_qd83k"]
+
+[node name="GameScreen" type="CanvasGroup"]
+
+[node name="TestEnemy" parent="." instance=ExtResource("1_qd83k")]
+position = Vector2(978, 538)
