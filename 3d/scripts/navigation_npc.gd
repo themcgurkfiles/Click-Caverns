@@ -6,11 +6,13 @@ extends CharacterBody3D
 @export var navRegion: NavigationRegion3D
 @export var isLoop: bool = false
 
-var exploreIndex: int
 var posArray = []
 
-var dungeonCleared: bool = false
+var exploreIndex: int
 var dungeonClearCount: int = 0
+
+var dungeonCleared: bool = false
+var isRandomMove: bool = false
 
 func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("MovementNodes"):
@@ -21,6 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_rand_move() # Demoted to dev tool, it's a sad life for rand move.
 
 func _physics_process(_delta: float) -> void:
+	# TODO: Check and make sure movement never gets stuck
 	var destination = navigation_agent_3d.get_next_path_position()
 	var local_destination = destination - global_position
 	var direction = local_destination.normalized()
@@ -30,18 +33,22 @@ func _physics_process(_delta: float) -> void:
 	if (destination - local_destination).length() > 0.1:  # To prevent jittering
 		_rotate(local_destination)
 	
+	# Ensures movement from checkpoint to checkpoint
 	# 0.53 is the magic number for whatever reason, uncomment the following when next to node to see why:
 	# var test = global_position.distance_to(navigation_agent_3d.get_final_position())
-	# TODO: Check and make sure movement never gets stuck
-	# First line (if...) here ensures movement from checkpoints, while second line (or...) initiates first move.
-	if global_position.distance_to(navigation_agent_3d.get_final_position()) < 0.6 \
-	or local_destination == navigation_agent_3d.get_final_position() and not local_destination:
+	if global_position.distance_to(navigation_agent_3d.get_final_position()) < 0.6:
+		if not isRandomMove and not dungeonCleared:
+			exploreIndex += 1
+		_sequence_move()
+	
+	# Initiates move to first checkpoint
+	if local_destination == navigation_agent_3d.get_final_position() and not local_destination:
 		_sequence_move()
 
 func _sequence_move():
+	isRandomMove = false
 	if exploreIndex < posArray.size():
 		navigation_agent_3d.target_position = posArray[exploreIndex]
-		exploreIndex += 1
 	elif isLoop: # Particularly a debug / screensaver option for testing pathing stuff
 		exploreIndex = 0
 	else: # TODO: Add more logic for this at some point
@@ -49,6 +56,7 @@ func _sequence_move():
 
 func _rand_move():
 	# random_position = Vector3(randf_range(-15.0, 15.0), 0, randf_range(-5.0, 5.0))
+	isRandomMove = true
 	navigation_agent_3d.target_position = NavigationServer3D.region_get_random_point(navRegion, 1, false)
 
 func _rotate(localDest: Vector3):
