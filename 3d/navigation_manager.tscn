@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://w41fvo1v3klc"]
+
+[ext_resource type="Script" path="res://3d/scripts/navigation_manager.gd" id="1_312ps"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c58yg"]
+
+[node name="NavigationManager" type="Area3D"]
+script = ExtResource("1_312ps")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_c58yg")

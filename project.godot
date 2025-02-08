@@ -24,6 +24,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 MovementNodes=""
+Player=""
 
 [input]
 
