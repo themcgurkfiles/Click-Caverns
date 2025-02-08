@@ -51,6 +51,7 @@ func _sequence_move():
 		navigation_agent_3d.target_position = posArray[exploreIndex]
 	elif isLoop: # Particularly a debug / screensaver option for testing pathing stuff
 		exploreIndex = 0
+		navigation_agent_3d.target_position = posArray[exploreIndex]
 	else: # TODO: Add more logic for this at some point
 		dungeonCleared = true
 
