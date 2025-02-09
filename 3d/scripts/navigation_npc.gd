@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var navRegion: NavigationRegion3D = get_parent()
 @export var speed: float = 5
 @export var slowdown: float = 1
-@export var navRegion: NavigationRegion3D
 @export var isLoop: bool = false
 
 var posArray = []
@@ -54,6 +54,7 @@ func _sequence_move():
 		navigation_agent_3d.target_position = posArray[exploreIndex]
 	else: # TODO: Add more logic for this at some point
 		dungeonCleared = true
+		get_tree().change_scene_to_file("res://3d/navigation_level.tscn")
 
 func _rand_move():
 	# random_position = Vector3(randf_range(-15.0, 15.0), 0, randf_range(-5.0, 5.0))
