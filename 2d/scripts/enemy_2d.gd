@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var player: CharacterBody3D
+@onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
 @export var health: int = 5
 @export var speed: float = 100
 @export var anim: String = "tboi-del-plum"
@@ -58,7 +58,7 @@ func _take_damage() -> void:
 	var tween = get_tree().create_tween()
 	
 	# TODO: Change to be player dependant later
-	health -= 1
+	health -= player.damage
 	
 	# On-Hit Shrink (OUCH!)
 	if health >= 0:

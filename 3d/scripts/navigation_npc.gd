@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var navRegion: NavigationRegion3D = get_parent()
 @export var speed: float = 5
 @export var slowdown: float = 1
+@export var damage: int = 1
 @export var isLoop: bool = false
 
 var posArray = []
