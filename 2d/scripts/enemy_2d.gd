@@ -7,6 +7,7 @@ class_name BaseEnemy2D
 @export var health: int = 5
 @export var speed: float = 100
 @export var anim: String = "tboi-del-plum"
+@export var doesShrink = false
 
 var direction := Vector2(1, 1)
 var screen_bounds: Rect2
@@ -64,12 +65,12 @@ func _movement_process_random_launch(_delta: float) -> void:
 		hasStopped = false
 	velocity *= 0.98
 	
-	var collision_size = $CollisionShape2D.shape.extents
-	_collide(position, collision_size)
-	
-	position += velocity * _delta
 	if velocity.length() < 5:
 		velocity *= 0
+		
+	var next_position = position + (velocity * _delta)
+	var collision_size = $CollisionShape2D.shape.extents
+	_collide(next_position, collision_size)
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if event.is_action_pressed("Click") and event.is_pressed():
@@ -107,8 +108,9 @@ func _take_damage() -> void:
 		return
 	
 	# Recovers back to normal size from OUCH! state
-	tween = get_tree().create_tween()
-	tween.tween_property(spriteAnim, "scale", ogScale, 0.05)
+	if (!doesShrink): # If fails, the size won't go back to normal leading to gradually smaller enemies.
+		tween = get_tree().create_tween()
+		tween.tween_property(spriteAnim, "scale", ogScale, 0.05)
 
 # We commit the bouncy here:
 # KNOWN BUG: Resizing window can leave enemies "stuck" on the size of the screen (most apparent when speed = 1000)
@@ -118,8 +120,10 @@ func _collide(next_position: Vector2, collision_size: Vector2) -> void:
 	if next_position.x - collision_size.x / 2 <= screen_bounds.position.x or \
 	next_position.x + collision_size.x / 2 >= screen_bounds.end.x:
 		direction.x *= -1
+		velocity.x *= -1
 	if next_position.y - collision_size.y / 2 <= screen_bounds.position.y or \
 	next_position.y + collision_size.y / 2 >= screen_bounds.end.y:
 		direction.y *= -1
+		velocity.y *= -1
 		
 	position = next_position

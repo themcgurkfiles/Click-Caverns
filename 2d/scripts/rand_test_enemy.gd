@@ -9,7 +9,6 @@ func _movement(_delta: float) -> void:
 		if velocity.length() >= 5:
 			_movement_process_random_launch(_delta)
 		if velocity.length() < 5:
-			await _on_Timer_timeout()
 			tookDamage = false
 	else:
 		_movement_process_random(_delta)
