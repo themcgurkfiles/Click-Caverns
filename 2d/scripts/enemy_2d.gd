@@ -45,25 +45,16 @@ func _movement_process_diagonal(_delta: float) -> void: # DVD Screensaver Moment
 	# Times 50 is remnant from a hack that didn't work well, kept it for nostalgia sake I guess
 	var next_position = position + (direction * speed * _delta) # * 50
 	
-	# We commit the bouncy here
-	# KNOWN BUG: Resizing window can leave enemies "stuck" on the size of the screen (most apparent when speed = 1000)
-	# TODO: Investigate window resize stuff, especially for mobile and all the headaches that'll cause
-	if next_position.x - collision_size.x / 2 <= screen_bounds.position.x or \
-	next_position.x + collision_size.x / 2 >= screen_bounds.end.x:
-		direction.x *= -1
-	if next_position.y - collision_size.y / 2 <= screen_bounds.position.y or \
-	next_position.y + collision_size.y / 2 >= screen_bounds.end.y:
-		direction.y *= -1
-		
-	position = next_position
-	
+	_collide(next_position, collision_size)
+
 func _movement_process_random(_delta: float) -> void: # Overrides passed direction variable
 	if hasStopped:
 		direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 		timer.start()
 		hasStopped = false
 	var next_position = position + (direction * speed * _delta)
-	position = next_position
+	var collision_size = $CollisionShape2D.shape.extents
+	_collide(next_position, collision_size)
 	
 func _movement_process_random_launch(_delta: float) -> void:
 	if hasStopped:
@@ -72,6 +63,10 @@ func _movement_process_random_launch(_delta: float) -> void:
 		timer.start()
 		hasStopped = false
 	velocity *= 0.98
+	
+	var collision_size = $CollisionShape2D.shape.extents
+	_collide(position, collision_size)
+	
 	position += velocity * _delta
 	if velocity.length() < 5:
 		velocity *= 0
@@ -114,3 +109,17 @@ func _take_damage() -> void:
 	# Recovers back to normal size from OUCH! state
 	tween = get_tree().create_tween()
 	tween.tween_property(spriteAnim, "scale", ogScale, 0.05)
+
+# We commit the bouncy here:
+# KNOWN BUG: Resizing window can leave enemies "stuck" on the size of the screen (most apparent when speed = 1000)
+# TODO: Investigate window resize stuff, especially for mobile and all the headaches that'll cause.
+func _collide(next_position: Vector2, collision_size: Vector2) -> void:
+	
+	if next_position.x - collision_size.x / 2 <= screen_bounds.position.x or \
+	next_position.x + collision_size.x / 2 >= screen_bounds.end.x:
+		direction.x *= -1
+	if next_position.y - collision_size.y / 2 <= screen_bounds.position.y or \
+	next_position.y + collision_size.y / 2 >= screen_bounds.end.y:
+		direction.y *= -1
+		
+	position = next_position
