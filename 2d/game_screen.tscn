@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://5bt346no4bhj"]
+[gd_scene load_steps=3 format=3 uid="uid://5bt346no4bhj"]
 
 [ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/enemies/test_enemy.tscn" id="1_qd83k"]
+[ext_resource type="PackedScene" uid="uid://bou0ajuifofrf" path="res://2d/enemies/random_test_enemy.tscn" id="2_iu3sg"]
 
 [node name="GameScreen" type="CanvasGroup"]
 
 [node name="TestEnemy" parent="." instance=ExtResource("1_qd83k")]
 position = Vector2(978, 538)
+
+[node name="RandTestEnemy" parent="." instance=ExtResource("2_iu3sg")]
+position = Vector2(508, 537)

@@ -1,1 +1,0 @@
-extends BaseEnemy2D
