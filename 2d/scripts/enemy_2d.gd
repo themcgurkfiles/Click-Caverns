@@ -1,6 +1,9 @@
 extends CharacterBody2D
+class_name BaseEnemy2D
 
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
+@onready var timer:= $Timer
+
 @export var health: int = 5
 @export var speed: float = 100
 @export var anim: String = "tboi-del-plum"
@@ -8,8 +11,12 @@ extends CharacterBody2D
 var direction := Vector2(1, 1)
 var screen_bounds: Rect2
 var ogScale: Vector2
+var hasStopped = true
 
 func _ready() -> void:
+	# Connect the timeout signal
+	timer.connect("timeout", _on_Timer_timeout)  
+	
 	# Obtains screen bounds and stores them for use in da bouncy func
 	var viewport_rect = get_viewport_rect()
 	screen_bounds = Rect2(Vector2.ZERO, viewport_rect.size)
@@ -22,7 +29,13 @@ func _ready() -> void:
 	spriteAnim.play(anim)
 	ogScale = spriteAnim.scale
 
+func _on_Timer_timeout() -> void:
+	hasStopped = true
+
 func _process(_delta: float) -> void:
+	_movement(_delta)
+
+func _movement(_delta: float) -> void:
 	_movement_process_diagonal(_delta)
 
 func _movement_process_diagonal(_delta: float) -> void: # DVD Screensaver Moment
@@ -43,6 +56,25 @@ func _movement_process_diagonal(_delta: float) -> void: # DVD Screensaver Moment
 		direction.y *= -1
 		
 	position = next_position
+	
+func _movement_process_random(_delta: float) -> void: # Overrides passed direction variable
+	if hasStopped:
+		direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+		timer.start()
+		hasStopped = false
+	var next_position = position + (direction * speed * _delta)
+	position = next_position
+	
+func _movement_process_random_launch(_delta: float) -> void:
+	if hasStopped:
+		direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+		velocity = direction * speed
+		timer.start()
+		hasStopped = false
+	velocity *= 0.98
+	position += velocity * _delta
+	if velocity.length() < 5:
+		velocity *= 0
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if event.is_action_pressed("Click") and event.is_pressed():
