@@ -18,10 +18,6 @@ func _ready() -> void:
 	# Connect the timeout signal
 	timer.connect("timeout", _on_Timer_timeout)  
 	
-	# Obtains screen bounds and stores them for use in da bouncy func
-	var viewport_rect = get_viewport_rect()
-	screen_bounds = Rect2(Vector2.ZERO, viewport_rect.size)
-	
 	# VERY important bool for sprites being clicked on
 	input_pickable = true
 	
@@ -29,6 +25,17 @@ func _ready() -> void:
 	var spriteAnim = $AnimatedSprite2D
 	spriteAnim.play(anim)
 	ogScale = spriteAnim.scale
+	
+	# Obtains screen bounds and stores them for use in da bouncy func
+	get_viewport().connect("size_changed", _on_viewport_resized)
+	_update_screen_bounds()
+
+func _update_screen_bounds() -> void:
+	var viewport_rect = get_viewport_rect()
+	screen_bounds = Rect2(Vector2.ZERO, viewport_rect.size)
+
+func _on_viewport_resized() -> void:
+	_update_screen_bounds()
 
 func _on_Timer_timeout() -> void:
 	hasStopped = true
