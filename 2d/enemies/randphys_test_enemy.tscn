@@ -1,38 +1,38 @@
-[gd_scene load_steps=13 format=3 uid="uid://b32grdt5f3e1x"]
+[gd_scene load_steps=13 format=3 uid="uid://c88rub1v1cfs4"]
 
-[ext_resource type="Texture2D" uid="uid://cvexrcbi2chr2" path="res://2d/sprites/206400.png" id="1_ijved"]
-[ext_resource type="Script" path="res://2d/scripts/enemy_2d.gd" id="1_k4fjb"]
+[ext_resource type="Script" path="res://2d/scripts/randphys_test_enemy.gd" id="1_8syor"]
+[ext_resource type="Texture2D" uid="uid://cvexrcbi2chr2" path="res://2d/sprites/206400.png" id="2_eph5w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l471i"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(2, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xkow"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(66, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hdb7m"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(130, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mpghr"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(194, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1bmc"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(258, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1isb"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(322, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxerx"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(386, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vh4uq"]
-atlas = ExtResource("1_ijved")
+atlas = ExtResource("2_eph5w")
 region = Rect2(450, 0, 57, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2rklb"]
@@ -73,26 +73,26 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2h84w"]
-size = Vector2(210.75, 204)
+size = Vector2(274.188, 283.5)
 
-[node name="TestEnemy" type="CharacterBody2D"]
-script = ExtResource("1_k4fjb")
-health = 3
-speed = 300.0
+[node name="RandPhysTestEnemy" type="CharacterBody2D"]
+script = ExtResource("1_8syor")
+speed = 2000.0
+doesShrink = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4.54747e-13, 0)
-scale = Vector2(3.75, 3.75)
+modulate = Color(3.1285e-06, 0.461504, 0.623544, 1)
+scale = Vector2(5.35714, 5.35714)
 sprite_frames = SubResource("SpriteFrames_2rklb")
 animation = &"tboi-del-plum"
 frame = 7
 frame_progress = 0.673834
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 5)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_2h84w")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
