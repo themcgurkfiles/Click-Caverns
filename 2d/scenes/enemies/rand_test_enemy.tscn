@@ -77,7 +77,7 @@ size = Vector2(143.375, 157)
 
 [node name="RandTestEnemy" type="CharacterBody2D"]
 script = ExtResource("1_n5x87")
-health = 2
+health = 2.0
 speed = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

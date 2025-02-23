@@ -4,10 +4,12 @@ class_name BaseEnemy2D
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
 @onready var timer:= $Timer
 
-@export var health: int = 5
+@export var health: float = 5
 @export var speed: float = 100
+@export var weight: float = 0.1
 @export var anim: String = "tboi-del-plum"
 @export var doesShrink = false
+
 
 var direction := Vector2(1, 1)
 var screen_bounds: Rect2
@@ -29,6 +31,9 @@ func _ready() -> void:
 	# Obtains screen bounds and stores them for use in da bouncy func
 	get_viewport().connect("size_changed", _on_viewport_resized)
 	_update_screen_bounds()
+	
+	# Lessens player encumbrance based on weight
+	player_info.player_data.subtract_encumbrance(weight)
 
 func _update_screen_bounds() -> void:
 	var viewport_rect = get_viewport_rect()
@@ -92,8 +97,8 @@ func _take_damage() -> void:
 	var spriteAnim = $AnimatedSprite2D
 	var tween = get_tree().create_tween()
 	
-	# TODO: Change to be player dependant later
-	health -= player.damage
+	# TODO: Test damage and make sure it works properly
+	health -= player_info.player_data.get_total_damage()
 	
 	# On-Hit Shrink (OUCH!)
 	if health >= 0:

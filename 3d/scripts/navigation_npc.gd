@@ -3,8 +3,6 @@ extends CharacterBody3D
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var navRegion: NavigationRegion3D = get_parent()
 @export var speed: float = 5
-@export var slowdown: float = 1
-@export var damage: int = 1
 @export var isLoop: bool = false
 
 var posArray = []
@@ -28,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 	var destination = navigation_agent_3d.get_next_path_position()
 	var local_destination = destination - global_position
 	var direction = local_destination.normalized()
-	velocity = direction * (speed * slowdown);
+	velocity = direction * (speed * player_info.player_data.encumbrance);
 	move_and_slide()
 	
 	if (destination - local_destination).length() > 0.1:  # To prevent jittering

@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerInfo
 
-@export var damage: float = 1
+@export var damage: float = 2
 @export var damage_mult: float = 1:
 	set(value):
 		damage_mult = max(1, value)
