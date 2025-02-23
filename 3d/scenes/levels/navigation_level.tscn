@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://o7csvtmqpff6"]
 
-[ext_resource type="PackedScene" uid="uid://d3plii6aqx0sq" path="res://3d/scenes/navnpc/navigation_npc.tscn" id="1_2i02q"]
-[ext_resource type="Material" uid="uid://16qlu6gfwgv0" path="res://3d/materials/floor.tres" id="1_n5v76"]
-[ext_resource type="Script" path="res://3d/scripts/camera_3d.gd" id="2_j825i"]
-[ext_resource type="PackedScene" uid="uid://5bt346no4bhj" path="res://2d/game_screen.tscn" id="3_3tafg"]
-[ext_resource type="Material" uid="uid://dve3eje4a71na" path="res://3d/materials/wall.tres" id="5_uj7x8"]
-[ext_resource type="PackedScene" uid="uid://bwpusosoas2dq" path="res://3d/scenes/navnpc/navigation_node.tscn" id="6_5cqqu"]
-[ext_resource type="PackedScene" uid="uid://w41fvo1v3klc" path="res://3d/scenes/navnpc/navigation_manager.tscn" id="7_wonxp"]
+[ext_resource type="Material" uid="uid://16qlu6gfwgv0" path="res://3d/materials/floor.tres" id="1_dkkwr"]
+[ext_resource type="PackedScene" uid="uid://d3plii6aqx0sq" path="res://3d/scenes/navnpc/navigation_npc.tscn" id="2_wfuod"]
+[ext_resource type="Script" path="res://3d/scripts/camera_3d.gd" id="3_5vhrq"]
+[ext_resource type="PackedScene" uid="uid://5bt346no4bhj" path="res://2d/game_screen.tscn" id="4_2xqdu"]
+[ext_resource type="Material" uid="uid://dve3eje4a71na" path="res://3d/materials/wall.tres" id="5_tkqk4"]
+[ext_resource type="PackedScene" uid="uid://bwpusosoas2dq" path="res://3d/scenes/navnpc/navigation_node.tscn" id="6_dsho2"]
+[ext_resource type="PackedScene" uid="uid://w41fvo1v3klc" path="res://3d/scenes/navnpc/navigation_manager.tscn" id="7_bwl4a"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_awdb5"]
 vertices = PackedVector3Array(6.5, 0.447559, -1, 6.75, 0.447559, -2.25, 4, 0.447559, -3.25, 0.25, 0.447559, -1, 4.25, 0.447559, -5, 5.25, 0.447559, -5.25, 5.25, 0.447559, -14.5, -4.5, 0.447559, 1, 0, 0.447559, 1, -4.5, 0.447559, -14.5, 23.75, 0.447559, 0, 23.75, 0.447559, 1, 24.5, 0.447559, 1, 24.5, 0.447559, -14.5, 20, 0.447559, -1.75, 20.25, 0.447559, -0.5, 20.75, 0.447559, -0.5, 22.75, 0.447559, -0.75, 14.25, 0.447559, -1.5, 15.75, 0.447559, -1, 16.25, 0.447559, -2.5, 13.75, 0.447559, -3, 17.5, 0.447559, -2.5, 7.25, 0.447559, -0.75, 12, 0.447559, -0.75, 13.75, 0.447559, -0.75, 14.75, 0.447559, 3.25, 17, 0.447559, 4.25, 6.75, 0.447559, 3.25, 5.25, 0.447559, 3.25, 5.5, 0.447559, 14.5, 18.25, 0.447559, 14.5, 7.25, 0.447559, 2.75, 18.5, 0.447559, 4.25, 16, 3.44756, 2, 16, 3.44756, 2.75, 18, 3.44756, 3.25, 19, 3.44756, 0.25, 19, 3.44756, -1, 17, 3.44756, -1.25, 18.75, 0.447559, 0, 18.75, 0.447559, -0.75, 17.25, 0.447559, -1, 16.25, 0.447559, 2.25, 18, 0.447559, 2.75, 19.75, 0.447559, 2.75, 19.25, 0.447559, 3.5, 24.5, 0.447559, 14.5, 23.75, 0.447559, 4.25, 22.25, 0.447559, 4.5, 21, 0.447559, 4, 1, 3.44756, 0, 1, 3.44756, 2, 6, 3.44756, 2, 6, 3.44756, 0, 1.25, 0.447559, 0.25, 1.25, 0.447559, 2, 6, 0.447559, 2, 6, 0.447559, 0.25, 0.25, 0.447559, 3.25, -4.5, 0.447559, 14.5)
@@ -37,53 +37,53 @@ environment = SubResource("Environment_bxkny")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, 0)
-material_override = ExtResource("1_n5v76")
+material_override = ExtResource("1_dkkwr")
 use_collision = true
 size = Vector3(30, 1, 30)
 
-[node name="NavigationNPC" parent="." instance=ExtResource("1_2i02q")]
+[node name="NavigationNPC" parent="." instance=ExtResource("2_wfuod")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 3)
 
 [node name="Camera3D" type="Camera3D" parent="NavigationNPC" node_paths=PackedStringArray("player")]
 transform = Transform3D(0.965926, 0.0669873, -0.25, 0, 0.965926, 0.258819, 0.258819, -0.25, 0.933013, 0, 0, 0)
 fov = 90.0
-script = ExtResource("2_j825i")
+script = ExtResource("3_5vhrq")
 player = NodePath("..")
 
-[node name="GameScreen" parent="NavigationNPC/Camera3D" instance=ExtResource("3_3tafg")]
+[node name="GameScreen" parent="NavigationNPC/Camera3D" instance=ExtResource("4_2xqdu")]
 
 [node name="Wall1" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.5, 1)
-material_override = ExtResource("5_uj7x8")
+material_override = ExtResource("5_tkqk4")
 use_collision = true
 size = Vector3(6, 3, 3)
 
 [node name="Wall2" type="CSGBox3D" parent="."]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 9.11926, 1.5, -2.90587)
-material_override = ExtResource("5_uj7x8")
+material_override = ExtResource("5_tkqk4")
 use_collision = true
 size = Vector3(9, 3, 1)
 
 [node name="Wall3" type="CSGBox3D" parent="."]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 17.5347, 1.5, 0.938739)
-material_override = ExtResource("5_uj7x8")
+material_override = ExtResource("5_tkqk4")
 use_collision = true
 size = Vector3(3, 3, 5)
 
 [node name="Wall4" type="CSGBox3D" parent="."]
 transform = Transform3D(-0.353553, 0.707107, -0.612372, 0.353553, 0.707107, 0.612372, 0.866025, 0, -0.5, 22.2759, 0.5, 1.90466)
-material_override = ExtResource("5_uj7x8")
+material_override = ExtResource("5_tkqk4")
 use_collision = true
 size = Vector3(3, 1, 3)
 
-[node name="NavigationNode" parent="." instance=ExtResource("6_5cqqu")]
+[node name="NavigationNode" parent="." instance=ExtResource("6_dsho2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 10)
 
-[node name="NavigationNode2" parent="." instance=ExtResource("6_5cqqu")]
+[node name="NavigationNode2" parent="." instance=ExtResource("6_dsho2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 11)
 
-[node name="NavigationNode3" parent="." instance=ExtResource("6_5cqqu")]
+[node name="NavigationNode3" parent="." instance=ExtResource("6_dsho2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -13)
 
-[node name="NavigationManager" parent="." instance=ExtResource("7_wonxp")]
+[node name="NavigationManager" parent="." instance=ExtResource("7_bwl4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -13)
