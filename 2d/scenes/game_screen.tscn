@@ -8,9 +8,11 @@
 
 [node name="RandPhysTestEnemy" parent="." instance=ExtResource("3_debrj")]
 position = Vector2(1374, 534)
+weight = 0.5
 
 [node name="TestEnemy" parent="." instance=ExtResource("1_qd83k")]
 position = Vector2(957, 535)
+weight = 0.2
 
 [node name="RandTestEnemy" parent="." instance=ExtResource("2_rf75h")]
 position = Vector2(632, 538)
