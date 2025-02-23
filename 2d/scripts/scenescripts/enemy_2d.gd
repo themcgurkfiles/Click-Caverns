@@ -34,7 +34,7 @@ func _ready() -> void:
 	
 	# Lessens player encumbrance based on weight
 	player_info.player_data.subtract_encumbrance(weight)
-	print(player_info.player_data.encumbrance)
+	# print(player_info.player_data.encumbrance)
 
 func _update_screen_bounds() -> void:
 	var viewport_rect = get_viewport_rect()
@@ -119,7 +119,7 @@ func _take_damage() -> void:
 		await rotateTween.finished
 		# Adds the enemy weight back to the player before deleting the enemy
 		player_info.player_data.subtract_encumbrance(-weight)
-		print(player_info.player_data.encumbrance)
+		# print(player_info.player_data.encumbrance)
 		queue_free()
 		return
 	

@@ -4,8 +4,11 @@ var player_data: PlayerInfo
 
 func _ready():
 	load_or_create_player_info()
-	print("Total Damage:", player_info.player_data.get_total_damage())
-	print("Encumbrance:", player_info.player_data.encumbrance)
+	print("Total Damage: ", player_info.player_data.get_total_damage())
+	print("Encumbrance: ", player_info.player_data.encumbrance)
+	print("Mana: ", player_info.player_data.mana)
+	print("Treasure: ", player_info.player_data.treasure)
+	print("Treasure Range: ", player_info.player_data.treasure_range)
 
 func load_or_create_player_info():
 	var save_path = "user://player_info.tres"

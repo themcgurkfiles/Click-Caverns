@@ -53,7 +53,7 @@ func _sequence_move():
 		navigation_agent_3d.target_position = posArray[exploreIndex]
 	else: # TODO: Add more logic for this at some point
 		dungeonCleared = true
-		get_tree().change_scene_to_file("res://3d/navigation_level.tscn")
+		get_tree().change_scene_to_file("res://3d/scenes/levels/navigation_level.tscn")
 
 func _rand_move():
 	# random_position = Vector3(randf_range(-15.0, 15.0), 0, randf_range(-5.0, 5.0))
