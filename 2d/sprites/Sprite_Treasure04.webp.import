@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bip8h3g4fsq00"
-path="res://.godot/imported/Treasures.webp-b8f5c7e85ab2763db18bd1eea5aaade8.ctex"
+uid="uid://cdn1qiaom8oi5"
+path="res://.godot/imported/Sprite_Treasure04.webp-e10bc38684c66bad84699d4fbf9c0db7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d/sprites/Treasures.webp"
-dest_files=["res://.godot/imported/Treasures.webp-b8f5c7e85ab2763db18bd1eea5aaade8.ctex"]
+source_file="res://2d/sprites/Sprite_Treasure04.webp"
+dest_files=["res://.godot/imported/Sprite_Treasure04.webp-e10bc38684c66bad84699d4fbf9c0db7.ctex"]
 
 [params]
 

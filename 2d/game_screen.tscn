@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://5bt346no4bhj"]
 
-[ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/enemies/test_enemy.tscn" id="1_qd83k"]
-[ext_resource type="PackedScene" uid="uid://jbwbfokb30bg" path="res://2d/enemies/rand_test_enemy.tscn" id="2_rf75h"]
-[ext_resource type="PackedScene" uid="uid://c88rub1v1cfs4" path="res://2d/enemies/randphys_test_enemy.tscn" id="3_debrj"]
+[ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/scenes/enemies/test_enemy.tscn" id="1_qd83k"]
+[ext_resource type="PackedScene" uid="uid://jbwbfokb30bg" path="res://2d/scenes/enemies/rand_test_enemy.tscn" id="2_rf75h"]
+[ext_resource type="PackedScene" uid="uid://c88rub1v1cfs4" path="res://2d/scenes/enemies/randphys_test_enemy.tscn" id="3_debrj"]
 
 [node name="GameScreen" type="CanvasGroup"]
 
