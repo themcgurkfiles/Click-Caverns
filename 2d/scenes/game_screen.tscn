@@ -1,8 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://5bt346no4bhj"]
+[gd_scene load_steps=19 format=3 uid="uid://5bt346no4bhj"]
 
 [ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/scenes/enemies/test_enemy.tscn" id="1_qd83k"]
 [ext_resource type="PackedScene" uid="uid://jbwbfokb30bg" path="res://2d/scenes/enemies/rand_test_enemy.tscn" id="2_rf75h"]
 [ext_resource type="PackedScene" uid="uid://c88rub1v1cfs4" path="res://2d/scenes/enemies/randphys_test_enemy.tscn" id="3_debrj"]
+[ext_resource type="PackedScene" uid="uid://bdj1ye07gb6qr" path="res://2d/scenes/treasure/treasure.tscn" id="4_wo3yj"]
+[ext_resource type="Script" path="res://2d/scripts/resources/treasure_resource.gd" id="5_okh2d"]
+[ext_resource type="Texture2D" uid="uid://tnfdbgpgec2b" path="res://2d/sprites/Sprite_Treasure00.webp" id="6_1pk3e"]
+[ext_resource type="Texture2D" uid="uid://doocwqb4vyudd" path="res://2d/sprites/Sprite_Treasure01.webp" id="7_5jufa"]
+[ext_resource type="Texture2D" uid="uid://ci3bauda06jtv" path="res://2d/sprites/Sprite_Treasure02.webp" id="8_jtla0"]
+[ext_resource type="Texture2D" uid="uid://oaiseoghxd1h" path="res://2d/sprites/Sprite_Treasure03.webp" id="9_5h6b8"]
+[ext_resource type="Texture2D" uid="uid://cdn1qiaom8oi5" path="res://2d/sprites/Sprite_Treasure04.webp" id="10_7olbe"]
+[ext_resource type="Texture2D" uid="uid://b006lyk22a5ap" path="res://2d/sprites/Sprite_Treasure05.webp" id="11_05tnf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76r5r"]
+size = Vector2(1920, 53.5)
+
+[sub_resource type="Resource" id="Resource_8kfej"]
+script = ExtResource("5_okh2d")
+value = 1
+texture = ExtResource("6_1pk3e")
+name = "Treasure"
+
+[sub_resource type="Resource" id="Resource_o2uq0"]
+script = ExtResource("5_okh2d")
+value = 5
+texture = ExtResource("7_5jufa")
+name = "Treasure"
+
+[sub_resource type="Resource" id="Resource_ci6ox"]
+script = ExtResource("5_okh2d")
+value = 10
+texture = ExtResource("8_jtla0")
+name = "Treasure"
+
+[sub_resource type="Resource" id="Resource_710mp"]
+script = ExtResource("5_okh2d")
+value = 25
+texture = ExtResource("9_5h6b8")
+name = "Treasure"
+
+[sub_resource type="Resource" id="Resource_cyqic"]
+script = ExtResource("5_okh2d")
+value = 50
+texture = ExtResource("10_7olbe")
+name = "Treasure"
+
+[sub_resource type="Resource" id="Resource_jvikr"]
+script = ExtResource("5_okh2d")
+value = 100
+texture = ExtResource("11_05tnf")
+name = "Treasure"
 
 [node name="GameScreen" type="CanvasGroup"]
 
@@ -16,3 +63,33 @@ weight = 0.2
 
 [node name="RandTestEnemy" parent="." instance=ExtResource("2_rf75h")]
 position = Vector2(632, 538)
+
+[node name="2DBounds" type="StaticBody2D" parent="."]
+
+[node name="CollidableFloorBound" type="CollisionShape2D" parent="2DBounds"]
+position = Vector2(960, 1057.75)
+shape = SubResource("RectangleShape2D_76r5r")
+
+[node name="Treasure" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1084, 90)
+treasure_data = SubResource("Resource_8kfej")
+
+[node name="Treasure2" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1054, 59)
+treasure_data = SubResource("Resource_o2uq0")
+
+[node name="Treasure3" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1084, 59)
+treasure_data = SubResource("Resource_ci6ox")
+
+[node name="Treasure4" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1114, 59)
+treasure_data = SubResource("Resource_710mp")
+
+[node name="Treasure5" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1069, 29)
+treasure_data = SubResource("Resource_cyqic")
+
+[node name="Treasure6" parent="." instance=ExtResource("4_wo3yj")]
+position = Vector2(1098, 22)
+treasure_data = SubResource("Resource_jvikr")
