@@ -11,7 +11,6 @@ class_name BaseEnemy2D
 @export var anim: String = "tboi-del-plum"
 @export var doesShrink = false
 
-
 var direction := Vector2(1, 1)
 var screen_bounds: Rect2
 var ogScale: Vector2
@@ -125,7 +124,7 @@ func _take_damage() -> void:
 		tween = get_tree().create_tween()
 		tween.tween_property(spriteAnim, "scale", ogScale, 0.05)
 
-# Experimental function (WIP)
+# Experimental function (WIP) (Currently Unused)
 func _return_collide_shape(delta: float) -> Rect2:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
