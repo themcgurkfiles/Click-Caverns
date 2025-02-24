@@ -22,8 +22,8 @@ var encumbrance: float:
 	get:
 		if _encumbrance >= 1.0:
 			return 1.0
-		elif _encumbrance <= 0.5:
-			return 0.5
+		elif _encumbrance <= 0.1:
+			return 0.1
 		else:
 			return _encumbrance
 

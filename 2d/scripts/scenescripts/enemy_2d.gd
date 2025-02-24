@@ -3,6 +3,7 @@ class_name BaseEnemy2D
 
 @onready var player: CharacterBody3D = get_tree().get_first_node_in_group("Player")
 @onready var timer:= $Timer
+@onready var collision_size = $CollisionShape2D.shape.extents
 
 @export var health: float = 5
 @export var speed: float = 100
@@ -53,22 +54,23 @@ func _movement(_delta: float) -> void:
 	_movement_process_diagonal(_delta)
 
 func _movement_process_diagonal(_delta: float) -> void: # DVD Screensaver Moment
-	# Get collider the smarty pants way
-	var collision_size = $CollisionShape2D.shape.extents
-	
-	# Times 50 is remnant from a hack that didn't work well, kept it for nostalgia sake I guess
-	var next_position = position + (direction * speed * _delta) # * 50
-	
-	_collide(next_position, collision_size)
+	velocity = direction * speed
+	var collision = move_and_collide(velocity * _delta)
+	if collision:
+		direction = direction.bounce(collision.get_normal())  # Proper bounce
+		velocity = direction * velocity.length()  # Maintain speed after bounce
 
 func _movement_process_random(_delta: float) -> void: # Overrides passed direction variable
 	if hasStopped:
 		direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 		timer.start()
 		hasStopped = false
-	var next_position = position + (direction * speed * _delta)
-	var collision_size = $CollisionShape2D.shape.extents
-	_collide(next_position, collision_size)
+	
+	velocity = direction * speed
+	var collision = move_and_collide(velocity * _delta)
+	if collision:
+		direction = direction.bounce(collision.get_normal())  # Proper bounce
+		velocity = direction * velocity.length()  # Maintain speed after bounce
 	
 func _movement_process_random_launch(_delta: float) -> void:
 	if hasStopped:
@@ -77,13 +79,12 @@ func _movement_process_random_launch(_delta: float) -> void:
 		timer.start()
 		hasStopped = false
 	velocity *= 0.98
-	
 	if velocity.length() < 5:
-		velocity *= 0
-		
-	var next_position = position + (velocity * _delta)
-	var collision_size = $CollisionShape2D.shape.extents
-	_collide(next_position, collision_size)
+		velocity = Vector2.ZERO
+	var collision = move_and_collide(velocity * _delta)
+	if collision:
+		direction = direction.bounce(collision.get_normal())  # Proper bounce
+		velocity = direction * velocity.length()  # Maintain speed after bounce
 
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if event.is_action_pressed("Click") and event.is_pressed():
@@ -93,19 +94,15 @@ func _take_damage() -> void:
 	# Prevents clicking and doing stuff on death
 	if (health <= 0):
 		return
-	
 	# A bunch of tweeny nonsense coming up that I did my best with, coming right up!
 	var spriteAnim = $AnimatedSprite2D
 	var tween = get_tree().create_tween()
-	
 	# TODO: Test damage and make sure it works properly
 	health -= player_info.player_data.get_total_damage()
-	
 	# On-Hit Shrink (OUCH!)
 	if health >= 0:
 		tween.tween_property(spriteAnim, "scale", spriteAnim.scale * 0.8, 0.05)
 		await tween.finished
-	
 	# On-Death Events
 	if health <= 0:
 		# OH LAWD HE SHRINKIN
@@ -128,18 +125,15 @@ func _take_damage() -> void:
 		tween = get_tree().create_tween()
 		tween.tween_property(spriteAnim, "scale", ogScale, 0.05)
 
-# We commit the bouncy here:
-# KNOWN BUG: Resizing window can leave enemies "stuck" on the size of the screen (most apparent when speed = 1000)
-# TODO: Investigate window resize stuff, especially for mobile and all the headaches that'll cause.
-func _collide(next_position: Vector2, collision_size: Vector2) -> void:
-	
-	if next_position.x - collision_size.x / 2 <= screen_bounds.position.x or \
-	next_position.x + collision_size.x / 2 >= screen_bounds.end.x:
-		direction.x *= -1
-		velocity.x *= -1
-	if next_position.y - collision_size.y / 2 <= screen_bounds.position.y or \
-	next_position.y + collision_size.y / 2 >= screen_bounds.end.y:
-		direction.y *= -1
-		velocity.y *= -1
-		
-	position = next_position
+# Experimental function (WIP)
+func _return_collide_shape(delta: float) -> Rect2:
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		var collider_node = collision.get_collider() # Node
+		var shape_idx = collision.get_collider_shape_index() # Shape index
+		if collider_node is CollisionObject2D:
+			var shape_owner_id = collider_node.shape_find_owner(shape_idx) # Shape owner id
+			var shape = collider_node.shape_owner_get_shape(shape_owner_id, 0) # Assuming first shape
+			if shape is RectangleShape2D:
+				return Rect2(shape.get_rect().position, shape.get_rect().size)
+	return Rect2()
