@@ -15,7 +15,7 @@ Click on enemies with `left click` to defeat them! Each one has its own movement
 
 # Current Features
 - 2D Enemies that move along the canvas screen.
-- Multiple movement types for and permutations of said NPCs.
+- Multiple movement types for and permutations of said enemies.
 - NPC that navigates through a nav mesh to predefined paths.
 - Basic environment.
 - Gems that fall and can be collected.
