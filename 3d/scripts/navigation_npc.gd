@@ -53,6 +53,7 @@ func _sequence_move():
 		navigation_agent_3d.target_position = posArray[exploreIndex]
 	else: # TODO: Add more logic for this at some point
 		dungeonCleared = true
+		player_info.player_data.reset_encumbrance()
 		get_tree().change_scene_to_file("res://3d/scenes/levels/navigation_level.tscn")
 
 func _rand_move():

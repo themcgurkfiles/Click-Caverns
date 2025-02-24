@@ -1,6 +1,6 @@
 extends BaseEnemy2D
 
-@export var onHitSpeedMult = 2
+@export var onHitSpeedMult = 2.4
 
 var tookDamage = false
 

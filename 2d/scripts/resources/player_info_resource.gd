@@ -1,7 +1,7 @@
 extends Resource
 class_name PlayerInfo
 
-@export var damage: float = 2
+@export var damage: float = 1
 @export var damage_mult: float = 1:
 	set(value):
 		damage_mult = max(1, value)
@@ -32,3 +32,7 @@ func get_total_damage() -> float:
 
 func subtract_encumbrance(enemyWeight: float) -> void:
 	_encumbrance -= enemyWeight
+
+func reset_encumbrance() -> void:
+	_encumbrance = 1.5
+	encumbrance = 1
