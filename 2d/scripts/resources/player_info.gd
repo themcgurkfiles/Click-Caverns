@@ -4,11 +4,29 @@ var player_data: PlayerInfo
 
 func _ready():
 	load_or_create_player_info()
-	print("Total Damage: ", player_info.player_data.get_total_damage())
-	print("Encumbrance: ", player_info.player_data.encumbrance)
-	print("Mana: ", player_info.player_data.mana)
-	print("Treasure: ", player_info.player_data.treasure)
-	print("Treasure Range: ", player_info.player_data.treasure_range)
+	
+	# TODO: Make some sort of enemy manager and retrieve current encumbrance
+	# so that it doesn't bug out and this line can be removed, which
+	# CURRENTLY BREAKS THE ENCUMBRANCE SYSTEM, PLEASE DON'T FORGET!
+	player_data.reset_encumbrance()
+	
+	# Uncomment line to delete and make a new player info:
+	#revert_player_info()
+	
+	read_out_player_info()
+
+func revert_player_info():
+	delete_player_info()
+	load_or_create_player_info()
+
+
+func read_out_player_info():
+	if player_data:
+		print("Total Damage: ", player_info.player_data.get_total_damage())
+		print("Encumbrance: ", player_info.player_data.encumbrance)
+		print("Mana: ", player_info.player_data.mana)
+		print("Treasure: ", player_info.player_data.treasure)
+		print("Treasure Range: ", player_info.player_data.treasure_range)
 
 func load_or_create_player_info():
 	var save_path = "user://player_info.tres"
@@ -23,4 +41,14 @@ func load_or_create_player_info():
 
 func save_player_info():
 	ResourceSaver.save(player_data, "user://player_info.tres")
-	print("PlayerInfo saved!")
+	print("PlayerInfo Saved!")
+	
+func delete_player_info():
+	DirAccess.remove_absolute("user://player_info.tres")
+	print("PlayerInfo Deleted!")
+
+# Saves player info on quit
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_player_info()
+		get_tree().quit() # default behavior

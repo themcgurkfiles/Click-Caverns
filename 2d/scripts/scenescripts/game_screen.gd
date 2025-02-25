@@ -6,7 +6,7 @@ var objects_in_radius: Array = []
 
 var force: float = 500
 var radius: float = 500
-var delete_radius: float = 35
+var delete_radius: float = 20
 var suck_grav_scale: float = 0.5
 
 # Called when the scene is ready
@@ -58,14 +58,17 @@ func _on_body_exited(body):
 
 # Delete object when it enters the small delete radius
 func _on_body_deleted(body):
-	if body in objects_in_radius:
+	if body in objects_in_radius and is_sucking and player_info.player_data.mana > 0:
 		objects_in_radius.erase(body)
 		body.queue_free()
 
 # Apply suction force continuously
 func _process(_delta):
 	if is_sucking:
-		for body in objects_in_radius:
-			if body is RigidBody2D:
-				var direction = (sucking_node.global_position - body.global_position).normalized()
-				body.apply_central_force((direction * force) / 0.8)
+		if player_info.player_data.mana > 0:
+			player_info.player_data.mana -= 1
+			print(player_info.player_data.mana)
+			for body in objects_in_radius:
+				if body is RigidBody2D:
+					var direction = (sucking_node.global_position - body.global_position).normalized()
+					body.apply_central_force((direction * force) / 0.8)

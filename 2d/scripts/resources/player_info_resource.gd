@@ -6,7 +6,7 @@ class_name PlayerInfo
 	set(value):
 		damage_mult = max(1, value)
 
-@export var mana: float = 100
+@export var mana: float = 300
 
 @export var treasure: float = 0
 @export var treasure_range: float = 50
