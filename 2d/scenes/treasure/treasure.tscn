@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdj1ye07gb6qr"]
 
-[ext_resource type="Script" path="res://2d/scripts/scenescripts/treasure.gd" id="1_ayx7q"]
+[ext_resource type="Script" uid="uid://crcpsduo7pc34" path="res://2d/scripts/scenescripts/treasure.gd" id="1_ayx7q"]
 
 [node name="Treasure" type="RigidBody2D"]
 script = ExtResource("1_ayx7q")

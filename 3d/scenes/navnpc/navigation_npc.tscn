@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d3plii6aqx0sq"]
 
-[ext_resource type="Script" path="res://3d/scripts/navigation_npc.gd" id="1_welbp"]
+[ext_resource type="Script" uid="uid://cfha53kxhhekv" path="res://3d/scripts/navigation_npc.gd" id="1_welbp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lp120"]
 

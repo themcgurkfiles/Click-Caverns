@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://c88rub1v1cfs4"]
 
-[ext_resource type="Script" path="res://2d/scripts/scenescripts/randphys_test_enemy.gd" id="1_8syor"]
+[ext_resource type="Script" uid="uid://drg76l5hm7hdc" path="res://2d/scripts/scenescripts/randphys_test_enemy.gd" id="1_8syor"]
 [ext_resource type="Texture2D" uid="uid://cvexrcbi2chr2" path="res://2d/sprites/206400.png" id="2_eph5w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l471i"]

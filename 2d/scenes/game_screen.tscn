@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://5bt346no4bhj"]
 
-[ext_resource type="Script" path="res://2d/scripts/scenescripts/game_screen.gd" id="1_7iw0r"]
+[ext_resource type="Script" uid="uid://da02eeeflvtd6" path="res://2d/scripts/scenescripts/game_screen.gd" id="1_7iw0r"]
 [ext_resource type="PackedScene" uid="uid://b32grdt5f3e1x" path="res://2d/scenes/enemies/test_enemy.tscn" id="1_qd83k"]
 [ext_resource type="PackedScene" uid="uid://jbwbfokb30bg" path="res://2d/scenes/enemies/rand_test_enemy.tscn" id="2_rf75h"]
 [ext_resource type="PackedScene" uid="uid://c88rub1v1cfs4" path="res://2d/scenes/enemies/randphys_test_enemy.tscn" id="3_debrj"]
 [ext_resource type="PackedScene" uid="uid://bdj1ye07gb6qr" path="res://2d/scenes/treasure/treasure.tscn" id="4_wo3yj"]
-[ext_resource type="Script" path="res://2d/scripts/resources/treasure_resource.gd" id="5_okh2d"]
+[ext_resource type="Script" uid="uid://t8q76t68g1rp" path="res://2d/scripts/resources/treasure_resource.gd" id="5_okh2d"]
 [ext_resource type="Texture2D" uid="uid://tnfdbgpgec2b" path="res://2d/sprites/Sprite_Treasure00.webp" id="7_yl5ch"]
 [ext_resource type="Texture2D" uid="uid://doocwqb4vyudd" path="res://2d/sprites/Sprite_Treasure01.webp" id="8_7omxr"]
 [ext_resource type="Texture2D" uid="uid://ci3bauda06jtv" path="res://2d/sprites/Sprite_Treasure02.webp" id="9_wu3cq"]
