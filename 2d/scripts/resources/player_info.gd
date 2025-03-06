@@ -1,6 +1,8 @@
 extends Node
 
 var player_data: PlayerInfo
+@onready var hud = get_tree().get_first_node_in_group("HUD")
+
 
 func _ready():
 	load_or_create_player_info()
@@ -11,15 +13,22 @@ func _ready():
 	player_data.reset_encumbrance()
 	
 	# Uncomment line to delete and make a new player info:
-	#revert_player_info()
+	# revert_player_info()
 	
 	read_out_player_info()
-	set_hud_player_info()
+	update_hud()
 
 func revert_player_info():
 	delete_player_info()
 	load_or_create_player_info()
 
+func _process(_delta: float) -> void:
+	if (player_info.player_data.mana < 500): # TODO: At some point, we'll move this to an actual game manager 
+		player_info.player_data.mana = round_to_dec(player_info.player_data.mana + 0.1, 1) # and delete the process from this script.
+	update_hud()
+
+func round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
 
 func read_out_player_info():
 	if player_data:
@@ -29,14 +38,15 @@ func read_out_player_info():
 		print("Treasure: ", player_info.player_data.treasure)
 		print("Treasure Range: ", player_info.player_data.treasure_range)
 
-func set_hud_player_info():
-	var hud = get_tree().get_first_node_in_group("HUD")
+func update_hud():
 	if player_data and hud:
-			hud.update_mana(player_info.player_data.mana)
-			hud.update_enc(player_info.player_data.encumbrance)
-			hud.update_tre(player_info.player_data.treasure)
-			hud.update_dmg(player_info.player_data.damage)
-			hud.update_rad(player_info.player_data.treasure_range)
+		hud.update_mana(player_info.player_data.mana)
+		hud.update_enc(player_info.player_data.encumbrance)
+		hud.update_tre(player_info.player_data.treasure)
+		hud.update_dmg(player_info.player_data.damage)
+		hud.update_rad(player_info.player_data.treasure_range)
+	else: # TODO: Possible temp solution here, attempt to fix this
+		hud = get_tree().get_first_node_in_group("HUD")
 
 func load_or_create_player_info():
 	var save_path = "user://player_info.tres"
