@@ -14,6 +14,7 @@ func _ready():
 	#revert_player_info()
 	
 	read_out_player_info()
+	set_hud_player_info()
 
 func revert_player_info():
 	delete_player_info()
@@ -27,6 +28,15 @@ func read_out_player_info():
 		print("Mana: ", player_info.player_data.mana)
 		print("Treasure: ", player_info.player_data.treasure)
 		print("Treasure Range: ", player_info.player_data.treasure_range)
+
+func set_hud_player_info():
+	var hud = get_tree().get_first_node_in_group("HUD")
+	if player_data and hud:
+			hud.update_mana(player_info.player_data.mana)
+			hud.update_enc(player_info.player_data.encumbrance)
+			hud.update_tre(player_info.player_data.treasure)
+			hud.update_dmg(player_info.player_data.damage)
+			hud.update_rad(player_info.player_data.treasure_range)
 
 func load_or_create_player_info():
 	var save_path = "user://player_info.tres"

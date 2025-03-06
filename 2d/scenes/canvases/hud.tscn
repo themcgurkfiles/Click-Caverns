@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq23ut1obblkk"]
+
+[ext_resource type="Script" uid="uid://dfhfk1p7ww1qy" path="res://2d/scripts/scenescripts/hud.gd" id="1_45r3c"]
+
+[node name="HUD" type="CanvasGroup" node_paths=PackedStringArray("player_mana_label", "player_enc_label", "player_tre_label", "player_dmg_label", "player_rad_label") groups=["HUD"]]
+script = ExtResource("1_45r3c")
+player_mana_label = NodePath("ManaText/ManaTextValue")
+player_enc_label = NodePath("EncumbranceText/EncTextValue")
+player_tre_label = NodePath("TreasureText/TreTextValue")
+player_dmg_label = NodePath("DamageText/DmgTextValue")
+player_rad_label = NodePath("TreasureRadiusText/RadTextValue")
+
+[node name="ManaText" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 73.0
+offset_bottom = 40.0
+text = "Mana: "
+
+[node name="ManaTextValue" type="Label" parent="ManaText"]
+offset_left = 52.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="EncumbranceText" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 77.0
+offset_right = 73.0
+offset_bottom = 100.0
+text = "Enc: "
+
+[node name="EncTextValue" type="Label" parent="EncumbranceText"]
+offset_left = 52.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="TreasureText" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 62.0
+offset_right = 73.0
+offset_bottom = 85.0
+text = "Tre: "
+
+[node name="TreTextValue" type="Label" parent="TreasureText"]
+offset_left = 52.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="DamageText" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 47.0
+offset_right = 73.0
+offset_bottom = 70.0
+text = "Dmg: "
+
+[node name="DmgTextValue" type="Label" parent="DamageText"]
+offset_left = 52.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="TreasureRadiusText" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 73.0
+offset_bottom = 55.0
+text = "Rad: "
+
+[node name="RadTextValue" type="Label" parent="TreasureRadiusText"]
+offset_left = 52.0
+offset_right = 86.0
+offset_bottom = 23.0
+text = "0"
