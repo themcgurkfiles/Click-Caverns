@@ -16,6 +16,7 @@ Click on enemies with `left click` to defeat them! Each one has its own movement
 # External Credits
 
 The enemy assets are temporary, and are from the video game "The Binding of Isaac" owned by Edmund McMillen.
+
 The treasure sprites are temporary, and are from the game "Shovel Knight" owned by Yacht Club Games.
 
 # Current Features
