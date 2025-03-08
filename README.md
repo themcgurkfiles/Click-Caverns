@@ -1,7 +1,7 @@
 # Welcome to Click Caverns!
 Part dungeon-exploration roguelike, part clicker-game extravaganza!
 
-Work-in-progress side project that I'll be working on during school when I can.
+Work-in-progress side project that I'll be working on during my time at Full Sail when I can.
 
 At the moment, it's a pathfinding showcase with some 2D enemies to vanquish on screen!
 
