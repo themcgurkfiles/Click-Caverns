@@ -13,6 +13,11 @@ Click on enemies with `left click` to defeat them! Each one has its own movement
 
 `Right click` pulls gems toward the mouse pointer. More robust scoring functionality coming soon!
 
+# External Credits
+
+The enemy assets are temporary, and are from the video game "The Binding of Isaac" owned by Edmund McMillen.
+The treasure sprites are temporary, and are from the game "Shovel Knight" owned by Yacht Club Games.
+
 # Current Features
 - 2D Enemies that move along the canvas screen.
 - Multiple movement types for and permutations of said enemies.
