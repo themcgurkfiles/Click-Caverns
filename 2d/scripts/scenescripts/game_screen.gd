@@ -58,7 +58,8 @@ func _on_body_exited(body):
 
 # Delete object when it enters the small delete radius
 func _on_body_deleted(body):
-	if body in objects_in_radius and is_sucking and player_info.player_data.mana > 0:
+	if body in objects_in_radius and is_sucking and player_info.player_data.mana > 0 and body.treasure_data is TreasureResource:
+		player_info.player_data.treasure += body.treasure_data.value
 		objects_in_radius.erase(body)
 		body.queue_free()
 
